@@ -14,6 +14,7 @@ export const PASSWORDS_NO_MATCH = "Password's do not match";
 //Routes
 
 export const CREATE_USER = { ROUTE: "/api/create_user/", METHOD: "post" };
+export const LOGIN = { ROUTE: "/api/login/", METHOD: "post" };
 
 //Status Codes
 

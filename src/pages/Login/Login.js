@@ -5,26 +5,22 @@ import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 
 // Styles
-import styles from "./signup.css";
+import styles from "./login.css";
 
 // Utils
 import { verifyFormFields } from "../../utils/verification";
 import {
   EMAIL,
-  FIRST_NAME,
-  LAST_NAME,
-  LOGIN_PATH,
+  SIGNUP_PATH,
   PASSWORD,
   STATUS_SUCCESS,
 } from "../../constants";
-import { createUser } from "../../utils/queries";
+import { login as loginUser } from "../../utils/queries";
 import { UnstyledButton } from "../../components/Button/UnstyledButton";
 import { Link } from "react-router-dom";
 
-const Signup = ({ login }) => {
+const Login = ({ login }) => {
   const [formFields, setFormFields] = useState({
-    [FIRST_NAME]: { value: "", error: "" },
-    [LAST_NAME]: { value: "", error: "" },
     [EMAIL]: { value: "", error: "" },
     [PASSWORD]: { value: "", error: "" },
   });
@@ -40,6 +36,8 @@ const Signup = ({ login }) => {
       [name]: { ...formFields[name], [field]: value },
     });
   };
+
+  const forgotPassword = () => {};
 
   // First submits formData to verify and returns the same object but with errors filled in
   // then counts the number of errors
@@ -61,7 +59,7 @@ const Signup = ({ login }) => {
         {}
       );
 
-      const status = await createUser(formValues);
+      const status = await loginUser(formValues);
 
       if (status === STATUS_SUCCESS) {
         login();
@@ -72,25 +70,11 @@ const Signup = ({ login }) => {
   };
 
   return (
-    <div className={styles.signupPage}>
+    <div className={styles.loginPage}>
       <p style={{ flex: 1 }}>&nbsp;</p>
-      <div className={styles.signupContainer}>
-        <img className={styles.signupLogo} src="/images/logos/gauss_logo.svg" />
-        <div className={styles.signupElements}>
-          <Input
-            info={"Enter your first name"}
-            value={formFields[FIRST_NAME].value}
-            error={formFields[FIRST_NAME].error}
-            onChange={onChange}
-            name={FIRST_NAME}
-          />
-          <Input
-            info={"Enter your last name"}
-            value={formFields[LAST_NAME].value}
-            error={formFields[LAST_NAME].error}
-            onChange={onChange}
-            name={LAST_NAME}
-          />
+      <div className={styles.loginContainer}>
+        <img className={styles.loginLogo} src="/images/logos/gauss_logo.svg" />
+        <div className={styles.loginElements}>
           <Input
             info={"Enter your email"}
             value={formFields[EMAIL].value}
@@ -102,18 +86,18 @@ const Signup = ({ login }) => {
             info={"Enter your password"}
             value={formFields[PASSWORD].value}
             error={formFields[PASSWORD].error}
+            rightText={"Forgot Password?"}
+            rightTextFunction={forgotPassword}
             onChange={onChange}
             name={PASSWORD}
             hideable
           />
-          <div className={styles.signupButtonContainer}>
-            <Button onClick={submit}>Sign up</Button>
+          <div className={styles.loginButtonContainer}>
+            <Button onClick={submit}>Log In</Button>
             <p>
-              Already have an account?{" "}
-              <Link to={LOGIN_PATH}>
-              <span className={styles.cursorText}>
-                Log in here!
-              </span>
+              Don't have an account yet?{" "}
+              <Link to={SIGNUP_PATH}>
+                <span className={styles.cursorText}>Sign Up here!</span>
               </Link>
             </p>
           </div>
@@ -136,4 +120,4 @@ const Signup = ({ login }) => {
   );
 };
 
-export default Signup;
+export default Login;

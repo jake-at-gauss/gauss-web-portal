@@ -10,6 +10,7 @@
   -moz-appearance: none;
   color: #464646;
   outline: none;  
+  font-size: inherit;
 }
 
 .unstyledButton:disabled {

@@ -5,3 +5,7 @@
   width: 100%;
   overflow: hidden;
 }
+
+:global(*) {
+  font-family: "Inter", sans-serif;
+}

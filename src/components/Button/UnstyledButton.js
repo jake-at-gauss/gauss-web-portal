@@ -4,7 +4,7 @@ import React from "react";
 import classNames from "classnames";
 
 // Styles
-import styles from "./UnstyledButton.module.css";
+import styles from "./UnstyledButton.css";
 
 export const UnstyledButton = ({
   className,

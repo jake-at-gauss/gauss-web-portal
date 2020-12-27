@@ -1,4 +1,4 @@
-#signup-page {
+.signupPage {
   height: 100%;
   width: 100%;
   display: flex;
@@ -9,19 +9,19 @@
   font-family: "Inter", sans-serif;
 }
 
-.terms-and-service-container {
+.termsAndServiceContainer {
   width: 400px;
   text-align: center;
   color: #7f829f;
   flex: 1;
 }
 
-.terms-and-service-container p {
+.termsAndServiceContainer p {
   width: 100%;
 }
 
 /*Main form in the center of the page */
-#signup-container {
+.signupContainer {
   height: 65%;
   width: 28%;
   min-width: 500px;
@@ -34,44 +34,55 @@
   align-items: center;
   background-color: #2b2d42;
 }
-#signup-logo {
+.signupLogo {
   height: auto;
   width: 275px;
   margin-top: 15px;
 }
-#signup-elements {
+.signupElements {
   width: 100%;
   margin: 0 auto;
 }
 
-#signup-elements > div {
+.signupElements > div {
   margin: 7px auto 0;
 }
 
-#signup-elements #signup-button-container {
+.signupElements .signupButtonContainer {
   text-align: center;
-  margin-top: 30px;
 }
-#signup-button-container > button {
-  margin: 0 auto;
+.signupButtonContainer > button {
+  margin: 12px 0 6px 0;
+  width: 50%;
+  height: 40px;
+  border-radius: 12px;
+  border: none;
 }
 
-#signup-button-container p {
+.signupButtonContainer p {
   color: #aaacbf;
   font-size: 0.8rem;
   margin-top: 6px;
 }
 
-.cursor-text {
-  cursor: pointer;
+.signupButtonContainer .cursorText {
+  display: inline-block;
+  color: #7f829f;
+  text-decoration: underline;
+}
+.termsAndServiceContainer .cursorText {
+  display: inline-block;
+  color: #7f829f;
+  text-decoration: underline;
 }
 
+
 @media (max-height: 680px) {
-  #signup-page {
+  .signupPage {
     flex-direction: row;
   }
 
-  .terms-and-service-container p {
+  .termsAndServiceContainer p {
     width: 60%;
     margin: 0 auto;
   }

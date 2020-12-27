@@ -1,9 +1,11 @@
 import { PASSWORD } from "../../constants";
-import "./input.css";
+import styles from "./input.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import classNames from "classnames";
+import Column from "../Layout/Column";
+import Row from "../Layout/Row";
 const eye = <FontAwesomeIcon icon={faEye} />;
 
 const Input = ({
@@ -14,34 +16,44 @@ const Input = ({
   rightTextFunction,
   error,
   onChange,
+  hideable,
 }) => {
-  const [fieldHidden, setFieldHidden] = useState(name !== PASSWORD);
+  const [fieldHidden, setFieldHidden] = useState(hideable);
 
-  const toggleShowPassword = () => {
+  const toggleFieldHidden = () => {
     setFieldHidden(!fieldHidden);
   };
 
   return (
-    <div id="input-container">
-      <div id="input-toptext-container">
+    <Column className={styles.inputContainer}>
+      <div className={styles.inputToptextContainer}>
         <p>{info}</p>
         <p style={{ cursor: "pointer" }} onClick={rightTextFunction}>
           {rightText}
         </p>
       </div>
-      <div id="input-textfield-container">
-        <input
-          className={classNames("input", { "input-error": !!error })}
-          type={!fieldHidden ? PASSWORD : "text"}
-          onChange={onChange}
-          value={value}
-          key={name}
-          name={name}
-        />
-        {name == PASSWORD && <i onClick={toggleShowPassword}>{eye}</i>}
-      </div>
-      <span className="input-error-text">&nbsp;{error}</span>
-    </div>
+      <Row align>
+        <div className={styles.inputTextfieldContainer}>
+          <input
+            className={classNames(styles.input, { "input-error": !!error })}
+            type={fieldHidden ? PASSWORD : "text"}
+            onChange={onChange}
+            value={value}
+            key={name}
+            name={name}
+          />
+          {hideable && <i onClick={toggleFieldHidden}>{eye}</i>}
+        </div>
+        <span
+          className={classNames(
+            error && styles.showError,
+            styles.inputErrorText
+          )}
+        >
+          !<span className={styles.inputErrorToolTip}>{error}</span>
+        </span>
+      </Row>
+    </Column>
   );
 };
 
