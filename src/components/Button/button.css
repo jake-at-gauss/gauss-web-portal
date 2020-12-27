@@ -1,0 +1,22 @@
+#button {
+  outline: none;
+  border-radius: 5px;
+  width: 70%;
+  height: 40px;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  color: #0f4f57;
+  display: block;
+  background-color: #00e0ee;
+  border: none;
+  cursor: pointer;
+}
+
+#button:hover {
+  background-color: #05c6d2;
+  width: 71%;
+}
+
+#button:active {
+  background-color: #05a3ad;
+}

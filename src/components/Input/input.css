@@ -1,0 +1,53 @@
+#input-container {
+  padding: 0;
+  width: 70%;
+  font-family: "Inter", sans-serif;
+}
+
+#input-toptext-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 20px;
+  color: #aaacbf;
+  font-size: 0.8rem;
+}
+
+#input-toptext-container p {
+  margin: 0;
+}
+
+#input-textfield-container {
+  position: relative;
+}
+
+#input-textfield-container .input {
+  width: 100%;
+  height: 37px;
+  box-sizing: border-box;
+  padding-left: 20px;
+  background-color: #4d4f66;
+  color: #ffffff;
+  outline: none;
+  border-radius: 6px;
+  border: none;
+  margin: 0;
+}
+
+#input-textfield-container .input-error {
+  border: 1px solid red;
+}
+
+.input-error-text {
+  color: #ec5858;
+  font-size: 0.8rem;
+}
+#input-textfield-container .input:focus {
+  outline: none;
+}
+
+i {
+  position: absolute;
+  left: 90%;
+  top: 23%;
+}

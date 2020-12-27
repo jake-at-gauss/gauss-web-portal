@@ -1,0 +1,17 @@
+.unstyledButton {
+  display: block;
+  border: none;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  background: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  color: #464646;
+  outline: none;  
+}
+
+.unstyledButton:disabled {
+    color: #464646;
+  }
