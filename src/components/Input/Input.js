@@ -17,6 +17,9 @@ const Input = ({
   error,
   onChange,
   hideable,
+  containerStyle,
+  infoStyle,
+  ...props
 }) => {
   const [fieldHidden, setFieldHidden] = useState(hideable);
 
@@ -25,8 +28,8 @@ const Input = ({
   };
 
   return (
-    <Column className={styles.inputContainer}>
-      <div className={styles.inputToptextContainer}>
+    <Column style={containerStyle} className={styles.inputContainer}>
+      <div style={infoStyle} className={styles.inputToptextContainer}>
         <p>{info}</p>
         <p style={{ cursor: "pointer" }} onClick={rightTextFunction}>
           {rightText}
@@ -41,6 +44,7 @@ const Input = ({
             value={value}
             key={name}
             name={name}
+            {...props}
           />
           {hideable && <i onClick={toggleFieldHidden}>{eye}</i>}
         </div>

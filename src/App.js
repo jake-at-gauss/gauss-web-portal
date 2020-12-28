@@ -80,7 +80,7 @@ function App() {
   };
 
   return (
-    <div className={styles.App}>
+    <div className={styles.app}>
       <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
         <Router history={history}>
           <Switch>

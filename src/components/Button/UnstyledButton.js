@@ -14,6 +14,7 @@ export const UnstyledButton = ({
   ...props
 }) => (
   <button
+    type="button"
     ref={buttonRef}
     style={{ ...(noOutline && { outline: "none" }), ...style }}
     className={classNames(styles.unstyledButton, className)}
