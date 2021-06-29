@@ -10,6 +10,8 @@ import {
 import Signup from "./pages/Signup/Signup.js";
 import {
   APP_ACCOUNT_PATH,
+  APP_ALBUMS_PATH,
+  APP_ALBUM_PATH,
   APP_BUILD_PATH,
   APP_PATH,
   LOGIN_PATH,
@@ -21,16 +23,49 @@ import { AuthContext } from "./context/AuthContext";
 import { get } from "lodash";
 import Login from "./pages/Login/Login";
 import Build from "./pages/Build/Build";
+import Page from "./hocs/asPage";
+import ModalService from "./components/ModalContainer/ModalService";
+import Albums from "./pages/Albums/Albums";
+import Album from "./pages/Albums/Album";
+import Test from "./pages/Test/Test";
 
-const PrivateRoute = ({ children, isAuthenticated, ...rest }) => {
+const privateRoutes = [
+  {
+    path: APP_BUILD_PATH,
+    Component: Build,
+  },
+  // {
+  //   path: APP_ALBUMS_PATH,
+  //   Component: Albums,
+  // },
+  // {
+  //   path: APP_ALBUM_PATH,
+  //   Component: Album,
+  // },
+  // {
+  //   path: APP_ACCOUNT_PATH,
+  //   Component: Test,
+  // },
+];
+
+const PrivateRoute = ({
+  withoutHeader,
+  children,
+  isAuthenticated,
+  ...rest
+}) => {
   const location = useLocation();
 
   return (
     <AuthContext.Consumer>
-      {({ isAuthenticated }) => (
+      {({ isAuthenticated, logout }) => (
         <Route {...rest}>
           {isAuthenticated === true ? (
-            children
+            !withoutHeader ? (
+              <Page content={children} logout={logout} />
+            ) : (
+              children
+            )
           ) : (
             <Redirect
               to={{ pathname: LOGIN_PATH, state: { from: location } }}
@@ -81,6 +116,7 @@ function App() {
 
   return (
     <div className={styles.app}>
+      <ModalService />
       <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
         <Router history={history}>
           <Switch>
@@ -91,18 +127,16 @@ function App() {
             <PublicRoute path={LOGIN_PATH}>
               <Login login={login} />
             </PublicRoute>
-
             {/** PRIVATE ROUTES */}
-            <PrivateRoute path={APP_BUILD_PATH}>
-              <Build logout={logout} />
-            </PrivateRoute>
-            <PrivateRoute path={APP_ACCOUNT_PATH}></PrivateRoute>
-
+            {privateRoutes.map(({ path, Component }) => (
+              <PrivateRoute path={path}>
+                <Component />
+              </PrivateRoute>
+            ))}
             {/**CATCH PRIVATE ROUTES */}
             <Route path={APP_PATH + "*"}>
               <Redirect to={APP_BUILD_PATH} />
             </Route>
-
             {/**CATCH PUBLIC ROUTES */}
             <Route path="*">
               <Redirect to={SIGNUP_PATH} />

@@ -1,0 +1,44 @@
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 5;
+  background: white;
+}
+
+.header {
+  justify-content: start;
+  height: 60px;
+  border-bottom: 2px solid #09231040;
+}
+
+.close {
+  margin: 16px;
+  transform: rotate(45deg);
+}
+
+.content {
+  height: calc(100% - 60px);
+}
+
+.imageContainer {
+  background: #09231020;
+}
+
+.image {
+  max-height: 80%;
+  max-width: 80%;
+  object-fit: contain;
+}
+
+.annotation {
+  padding: 8px 16px;
+  background: #4cac64;
+  border-radius: 8px;
+  box-shadow: 2px 2px 4px 0px #09231040;
+  color: white;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}

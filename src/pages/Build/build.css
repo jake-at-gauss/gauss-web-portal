@@ -1,8 +1,170 @@
 .uploadedImage {
-  height: 100px;
-  width: 100px;
+  height: 32px;
+  width: 32px;
   object-fit: cover;
-  margin: 20px;
-  border: 1px solid black;
-  border-radius: 12px;
+  margin: 8px;
+  border-radius: 4px;
+}
+
+.uploadedImage:last-child {
+  margin-right: auto;
+}
+
+.container {
+  padding: 16px 32px;
+  height: 100%;
+  background: #09231020;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.albumInput::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+.albumInput {
+  width: 250px;
+  height: 32px;
+  font-size: 20px;
+  border-radius: 8px;
+  padding-left: 8px;
+  border: none;
+  outline: unset;
+  box-sizing: border-box;
+}
+
+.submitButton {
+  background-color: #183562;
+  color: white;
+  height: 32px;
+  border-radius: 8px;
+  margin-top: 250px;
+  margin-bottom: 32px;
+  font-size: 20px;
+}
+
+.submitButton:disabled {
+  color: white;
+  opacity: 0.75;
+}
+
+.dndContainer {
+  height: 400px;
+  width: 600px;
+  color: rgba(9, 35, 16, 0.584);
+  border: 4px dashed rgba(9, 35, 16, 0.584);
+  border-radius: 32px;
+}
+
+.fileBrowser {
+  border: 1px solid rgba(9, 35, 16, 0.584);
+  color: rgba(9, 35, 16, 0.584);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: 0.5s;
+}
+
+.fileBrowser:hover {
+  background-color: rgba(9, 35, 16, 0.2);
+}
+
+.uploadContainer {
+  min-height: 400px;
+  width: 100%;
+}
+
+.imagePreviewContainer {
+  flex-wrap: wrap;
+  width: 250px;
+  padding: 32px;
+  overflow: hidden;
+}
+
+.loadingContainer {
+  color: rgba(9, 35, 16, 0.584);
+  background-color: #09231020;
+  border-radius: 32px;
+  padding: 16px 32px;
+  align-self: flex-start;
+  width: 250px;
+  height: 250px;
+  max-height: 250px;
+  min-height: 250px;
+  justify-content: center;
+  display: flex;
+  flex: 1;
+}
+
+.loadingBarContainer {
+  width: 200px;
+  background: #09231020;
+  border-radius: 4px;
+  margin: 16px;
+}
+
+@property --num {
+  syntax: '<integer>';
+  initial-value: 0;
+  inherits: false;
+}
+@property --percent {
+  syntax: '<number>';
+  initial-value: 0;
+  inherits: false;
+}
+@property --temp {
+  syntax: '<number>';
+  initial-value: 0;
+  inherits: false;
+}
+@property --v1 {
+  syntax: '<integer>';
+  initial-value: 0;
+  inherits: false;
+}
+
+.loadedNumContainer {
+  transition: --num 1s;
+  counter-reset: num var(--num);
+}
+
+.loadedNumContainer::after {
+  content: counter(num);
+}
+
+.loadingBar {
+  color: white;
+  padding: 16px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-weight: bold;
+  text-align: center;
+
+  transition: --percent 1s, width 1s;
+  --temp: calc(var(--percent) * 100);
+  --v1: max(var(--temp) - 0.5, 0);
+  counter-reset: v1 var(--v1);
+}
+
+.loadingBar::after {
+  content: counter(v1) '%';
+}
+
+.dropdownMenuOptions {
+  top: 40px;
+  width: 100%;
+  box-shadow: none;
+  right: 0;
+}
+
+.dropdownMenuOptions span {
+  box-shadow: 2px 2px 4px 0px #09231040;
+  height: 32px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border-radius: 8px;
+  margin-top: 4px;
+  background: white;
 }

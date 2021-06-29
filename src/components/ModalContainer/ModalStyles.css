@@ -1,0 +1,20 @@
+.wrapper {
+  position: absolute;
+  width: 50vw;
+  height: 50vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 10px 10px 8px rgb(50 50 50 / 40%) 2px 2px 4px 0px;
+}
+
+.overlay {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: #00000050;
+}

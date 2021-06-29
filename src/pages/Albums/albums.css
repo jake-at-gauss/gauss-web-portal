@@ -1,0 +1,106 @@
+.searchbar {
+  box-shadow: 2px 2px 4px 0px #09231040;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.searchbarInput {
+  border: none;
+  caret-color: #09231060;
+  width: -webkit-fill-available;
+  background: transparent;
+}
+
+.container {
+  padding: 16px 32px;
+  height: 100%;
+  background: #09231020;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.albumPreview {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+  margin: 32px 64px 32px 0;
+  border: 1px solid black;
+  border-radius: 12px;
+}
+
+.previewContainer {
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  color: #09231080;
+  padding: 8px 0;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8px;
+  border-bottom: 2px solid #09231005;
+  border-radius: 8px;
+}
+
+.previewContainer:hover {
+  background: #09231005;
+}
+
+.albumInfo {
+  padding: 32px;
+  box-sizing: border-box;
+  min-width: 300px;
+  height: 500px;
+  background: white;
+  flex: 0;
+  border-radius: 16px;
+  margin-left: auto;
+  position: sticky;
+  top: 0;
+
+  background: #09231020;
+  box-shadow: rgb(50 50 50 / 40%) 2px 2px 4px 0px;
+}
+
+.albumInfoLoading {
+  height: 500px;
+  width: 300px;
+  border-radius: 16px;
+  margin-left: auto;
+  background-size: 800px 500px;
+}
+
+.exportButton {
+  background-color: #092310;
+  transition: all 0.5s;
+  color: white;
+  height: 32px;
+  border-radius: 8px;
+  margin-top: auto;
+  width: fit-content;
+  padding: 8px 16px;
+  align-self: center;
+  line-height: 16px;
+}
+
+.exportButton:hover {
+  background-color: #4cac64;
+}
+
+.hoverable {
+  position: relative;
+}
+
+.hoverable:hover > .tooltip {
+  display: block;
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  background: gray;
+  top: -28px;
+  left: 8px;
+  width: max-content;
+  padding: 4px;
+  border-radius: 2px;
+}

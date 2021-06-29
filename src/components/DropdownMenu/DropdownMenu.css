@@ -1,0 +1,20 @@
+.dropdownMenu {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+}
+
+.dropdownMenuOptions {
+  top: 40px;
+  border-radius: 2px;
+  box-shadow: 0 2px 11px 3px #000000;
+  display: none;
+  position: absolute;
+  right: 12px;
+  top: 100px;
+  z-index: 50;
+}
+
+.dropdownMenuOptions__open {
+  display: block;
+}

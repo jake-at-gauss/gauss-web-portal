@@ -15,7 +15,10 @@ export const PASSWORDS_NO_MATCH = "Password's do not match";
 
 export const CREATE_USER = { ROUTE: "/api/create_user/", METHOD: "post" };
 export const LOGIN = { ROUTE: "/api/login/", METHOD: "post" };
-export const CREATE_RATEABLE_TEMPLATE = { ROUTE: "/api/add_template/", METHOD: "post" };
+export const CREATE_RATEABLE_TEMPLATE = {
+  ROUTE: "/api/add_template/",
+  METHOD: "post",
+};
 
 //Status Codes
 
@@ -27,6 +30,11 @@ export const SIGNUP_PATH = "/signup";
 export const LOGIN_PATH = "/login";
 export const APP_PATH = "/app";
 export const APP_BUILD_PATH = "/app/build";
-export const APP_MANAGE_PATH = "/app/manage";
-export const APP_DEPLOY_PATH = "/app/deploy";
+export const APP_ALBUMS_PATH = "/app/albums";
+export const APP_ALBUM_PATH = "/app/albums/:albumId";
+export const APP_UPLOAD_PATH = "/app/upload";
 export const APP_ACCOUNT_PATH = "/app/account";
+
+export const APP_CREATE_BATCH_PATH = "/app/create_batch";
+export const APP_BATCHES_PATH = "/app/batch_management";
+export const APP_BATCH_PATH = "/app/batch/:id";

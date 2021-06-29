@@ -1,0 +1,66 @@
+.logout {
+  font-size: 20px;
+  margin-top: auto;
+  margin-bottom: 32px;
+  text-align: start;
+}
+
+.header {
+  justify-content: start;
+  height: 60px;
+  border-bottom: 2px solid #09231040;
+}
+
+.sidebarContainer {
+  height: 100%;
+  overflow: hidden;
+  border-right: 2px solid #09231040;
+}
+
+.section {
+  border-bottom: 2px solid #09231040;
+  padding: 8px 16px;
+}
+
+.finalSection {
+  border-top: 2px solid #09231040;
+  padding: 8px 16px;
+  margin-top: auto;
+}
+
+.dashboard {
+  display: flex;
+  font-size: 12px;
+  padding: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #09231040;
+  margin-bottom: 8px;
+}
+
+.sidebarLinkWrapper {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  margin-bottom: 8px;
+}
+
+.sidebarLinkWrapper:last-child {
+  margin-bottom: 0;
+}
+
+.sidebarIcon {
+  width: 20px;
+  margin-right: 16px;
+}
+
+.navText {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 2;
+}
+
+.notifications {
+  margin: 16px 16px 16px auto;
+  padding-right: 16px;
+  border-right: 2px solid #09231040;
+}

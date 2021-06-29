@@ -8,11 +8,11 @@
   cursor: pointer;
   -webkit-appearance: none;
   -moz-appearance: none;
-  color: #464646;
+  color: #092310;
   outline: none;  
   font-size: inherit;
 }
 
 .unstyledButton:disabled {
-    color: #464646;
+    color: #092310;
   }
