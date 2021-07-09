@@ -9,10 +9,9 @@ import {
 } from "react-router";
 import Signup from "./pages/Signup/Signup.js";
 import {
-  APP_ACCOUNT_PATH,
-  APP_ALBUMS_PATH,
-  APP_ALBUM_PATH,
+  APP_BATCHES_PATH,
   APP_BUILD_PATH,
+  APP_CREATE_BATCH_PATH,
   APP_PATH,
   LOGIN_PATH,
   SIGNUP_PATH,
@@ -25,14 +24,21 @@ import Login from "./pages/Login/Login";
 import Build from "./pages/Build/Build";
 import Page from "./hocs/asPage";
 import ModalService from "./components/ModalContainer/ModalService";
-import Albums from "./pages/Albums/Albums";
-import Album from "./pages/Albums/Album";
-import Test from "./pages/Test/Test";
+import BatchUploader from "./pages/BatchUploader/BatchUploader";
+import BatchManager from "./pages/BatchManager/BatchManager";
 
 const privateRoutes = [
   {
     path: APP_BUILD_PATH,
     Component: Build,
+  },
+  {
+    path: APP_BATCHES_PATH,
+    Component: BatchManager,
+  },
+  {
+    path: APP_CREATE_BATCH_PATH,
+    Component: BatchUploader,
   },
   // {
   //   path: APP_ALBUMS_PATH,
@@ -47,6 +53,10 @@ const privateRoutes = [
   //   Component: Test,
   // },
 ];
+
+// TODO: sweep and handle failed network requests (toast?)
+// TODO: refactor auth to authService and useAuthService hook
+// TODO: other stuff surely
 
 const PrivateRoute = ({
   withoutHeader,

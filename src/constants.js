@@ -13,10 +13,26 @@ export const PASSWORDS_NO_MATCH = "Password's do not match";
 
 //Routes
 
-export const CREATE_USER = { ROUTE: "/api/create_user/", METHOD: "post" };
+export const CREATE_USER = { ROUTE: "/api/user/", METHOD: "post" };
+export const GET_USER = {
+  ROUTE: "/api/user/",
+  METHOD: "get",
+};
 export const LOGIN = { ROUTE: "/api/login/", METHOD: "post" };
 export const CREATE_RATEABLE_TEMPLATE = {
   ROUTE: "/api/add_template/",
+  METHOD: "post",
+};
+export const CREATE_TASK_BATCH = {
+  ROUTE: "/api/task-batch/classification/",
+  METHOD: "post",
+};
+export const GET_TASK_BATCHES = {
+  ROUTE: "/api/task-batch/all/",
+  METHOD: "get",
+};
+export const CREATE_CHECKOUT_SESSION = {
+  ROUTE: "/api/create-checkout-session/",
   METHOD: "post",
 };
 
@@ -30,9 +46,9 @@ export const SIGNUP_PATH = "/signup";
 export const LOGIN_PATH = "/login";
 export const APP_PATH = "/app";
 export const APP_BUILD_PATH = "/app/build";
-export const APP_ALBUMS_PATH = "/app/albums";
-export const APP_ALBUM_PATH = "/app/albums/:albumId";
-export const APP_UPLOAD_PATH = "/app/upload";
+// export const APP_ALBUMS_PATH = "/app/albums";
+// export const APP_ALBUM_PATH = "/app/albums/:albumId";
+// export const APP_UPLOAD_PATH = "/app/upload";
 export const APP_ACCOUNT_PATH = "/app/account";
 
 export const APP_CREATE_BATCH_PATH = "/app/create_batch";

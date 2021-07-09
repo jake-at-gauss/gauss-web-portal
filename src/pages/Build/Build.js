@@ -10,10 +10,9 @@ import Row from "../../components/Layout/Row";
 import LoadingComponent from "../../components/LoadingComponent/LoadingComponent";
 import { UPLOAD_SUCCESS_MODAL } from "../../components/ModalContainer/ModalConstants";
 import { useModalService } from "../../components/ModalContainer/ModalService";
+import { SearchBar } from "../../components/SearchBar/SearchBar";
 import regStyles from "../../styles/constants";
 import { addTemplate } from "../../utils/queries";
-import { SearchBar } from "../Albums/Albums";
-import albums from "../Albums/mockAlbums";
 import styles from "./build.css";
 
 const probRegex = /^[-+]?[0-9]*(\.[0-9]*)$/;
@@ -272,7 +271,7 @@ const LoadingPreviews = ({ previews }) => {
             dropdownOptionsClassName={styles.dropdownMenuOptions}
             dropdownOptions={
               <AlbumDropdownOptions
-                options={albums
+                options={[]
                   .map(({ name }) => name)
                   .filter((name) =>
                     name.toLowerCase().includes(albumFilter.toLowerCase())

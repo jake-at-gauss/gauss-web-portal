@@ -64,3 +64,11 @@
   padding-right: 16px;
   border-right: 2px solid #09231040;
 }
+
+.dropdownOptions {
+  width: 150px;
+  background: white;
+  box-shadow: 0 2px 11px 3px #00000050;
+  right: 4px;
+  cursor: default;
+}

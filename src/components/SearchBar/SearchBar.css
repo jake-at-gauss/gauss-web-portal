@@ -1,0 +1,12 @@
+.searchbar {
+  box-shadow: 2px 2px 4px 0px #09231040;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.searchbarInput {
+  border: none;
+  caret-color: #09231060;
+  width: -webkit-fill-available;
+  background: transparent;
+}

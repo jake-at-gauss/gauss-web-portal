@@ -77,10 +77,9 @@
     "body": ["const {$1} = this.props;"],
     "description": "creates prop destructuring"
   },
-  "destructure api services": {
-    "scope": "javascript",
-    "prefix": "qma",
-    "body": ["const {$1} = window.QM.API;"],
-    "description": "creates service destructuring"
+  "useState": {
+    "prefix": "ust",
+    "body": ["const [${1}, set${1/(.*)/${1:/capitalize}/}] = useState($2);$0"],
+    "description": "React useState() hook"
   }
 }

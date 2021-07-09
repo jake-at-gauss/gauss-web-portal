@@ -1,9 +1,7 @@
 import React from "react";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { Link } from "react-router-dom";
-import { APP_ALBUMS_PATH } from "../../../constants";
 import regStyles from "../../../styles/constants";
-import { UnstyledButton } from "../../Button/UnstyledButton";
 
 // Components
 import CloseIcon from "../../CloseIcon/CloseIcon";
@@ -14,7 +12,6 @@ import Row from "../../Layout/Row";
 import genericStyles from "../ModalStyles.css";
 
 const UploadSuccessModal = ({ config, closeModal }) => {
-  console.log(config);
   return (
     <div className={genericStyles.overlay}>
       <Column
@@ -33,7 +30,7 @@ const UploadSuccessModal = ({ config, closeModal }) => {
         </span>
         <Link
           onClick={closeModal}
-          to={`${APP_ALBUMS_PATH}/${config.album.toLowerCase()}`}
+          to={`/${config.album.toLowerCase()}`}
           style={{
             display: "flex",
             alignItems: "center",
