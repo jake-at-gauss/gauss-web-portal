@@ -1,0 +1,122 @@
+.ReactModalWrapper {
+  top: calc(45vh * 1.2);
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  height: 740px;
+  width: 520px;
+  background: #fff;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 4px;
+  outline: none;
+  padding: none;
+  transform: translate(-50%, -50%);
+}
+.ReactModalWrapper--fadeIn {
+  animation: modalFadeIn 0.3s 1 0s ease-in forwards;
+}
+
+.ReactModalWrapper--slideFromRight {
+  animation: slideFromRight 0.3s 1 0s ease-in forwards;
+}
+
+.ReactModalWrapper--flyIn {
+  animation: flyIn 0.2s 1 0s ease-in forwards;
+}
+
+.ReactModalWrapper--looneyToon {
+  animation: looneyToon 0.4s 1 0s ease-in forwards;
+}
+.ReactModalWrapper--looneyToon .ReactModalWrapper > * {
+  opacity: 0;
+  animation: modalFadeIn 0.3s 1 0.4s ease-in forwards;
+}
+
+.ReactModalWrapper--overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(70, 70, 70, 0.75);
+  z-index: 70;
+  overflow-y: scroll;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ReactModalWrapper-header {
+  margin-top: -1px;
+  background-color: #464646;
+  color: white;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.ReactModalWrapper-header > span {
+  font-size: 24px;
+  line-height: 24px;
+  height: 24px;
+  display: inline-block;
+  margin-left: 4;
+  cursor: pointer;
+}
+
+.ReactModalWrapper-header > h3 {
+  line-height: 1.2em;
+  text-align: center;
+  width: 100%;
+  padding: 0;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideFromRight {
+  from {
+    opacity: 0;
+    transform: translate(-40%, -50%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes flyIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.4, 0.4);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1, 1);
+  }
+}
+
+@keyframes looneyToon {
+  from {
+    opacity: 0;
+    border-radius: 1000px;
+    height: 10px;
+    width: 10px;
+    overflow: hidden;
+  }
+
+  to {
+    opacity: 1;
+    border-radius: 0px;
+    overflow: hidden;
+  }
+}

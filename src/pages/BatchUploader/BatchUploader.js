@@ -1,24 +1,39 @@
-import { get, isEmpty } from "lodash";
-import React, { useEffect, useRef, useState } from "react";
-import { BiAddToQueue } from "react-icons/bi";
-import { IoIosCloseCircle } from "react-icons/io";
-import { RiMenuAddFill } from "react-icons/ri";
+import React, { useRef, useState } from "react";
+import { useModalService } from "../../components/ModalContainer/ModalService";
+
+// Components
 import { UnstyledButton } from "../../components/Button/UnstyledButton";
+import { SearchBar } from "../../components/SearchBar/SearchBar";
 import DropdownMenu from "../../components/DropdownMenu/DropdownMenu";
 import Column from "../../components/Layout/Column";
 import Row from "../../components/Layout/Row";
-import { GENERIC_MESSAGE_MODAL } from "../../components/ModalContainer/ModalConstants";
-import { useModalService } from "../../components/ModalContainer/ModalService";
-import { SearchBar } from "../../components/SearchBar/SearchBar";
-import regStyles from "../../styles/constants";
+
+// Utils
 import { parseArrayFromCSV } from "../../utils/general";
+import { get, isEmpty } from "lodash";
+
+// Icons
+import { BiAddToQueue } from "react-icons/bi";
+import { IoIosCloseCircle } from "react-icons/io";
+
+// Constants
+import { GENERIC_MESSAGE_MODAL } from "../../components/ModalContainer/ModalConstants";
+
+// Styles
+import regStyles from "../../styles/constants";
+
+// Queries
 import { createCheckoutSession, createTaskBatch } from "../../utils/queries";
 
 import styles from "./BatchUploader.css";
+import PromptButton from "../../components/Button/PromptButton";
 
+const urlWithHTTPRegex =
+  /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g;
 const taskTypes = ["Classification"];
 const emptyTask = { type: "", labels: [] };
 const maxLabels = 8;
+const minLabels = 2;
 
 const DropdownOptions = ({ onClick, options }) => (
   <Column>
@@ -166,7 +181,12 @@ const BatchUploader = ({}) => {
   // TASK MANIPULATION FNS
 
   const addFiles = (e) => {
-    const csv = e.target.files[0];
+    const csv = get(e, "target.files[0]");
+
+    // // file doesn't exist
+    if (!csv) {
+      return;
+    }
 
     // Handle wrong file format
     if (csv.name.split(".").pop().toLowerCase() !== "csv") {
@@ -187,6 +207,20 @@ const BatchUploader = ({}) => {
     };
 
     reader.readAsText(csv);
+  };
+
+  const proceedToCheckout = () => {
+    setLoading(true);
+    createTaskBatch(task.labels, imageURLs)
+      .then(({ data }) => {
+        return createCheckoutSession({
+          product_id: "",
+          quantity: imageURLs.length,
+          batch_identifier: data.task_batch.batch_identifier,
+        });
+      })
+      // TODO: catch errors
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -228,28 +262,34 @@ const BatchUploader = ({}) => {
           addTaskLabel={addTaskLabel}
           removeTaskLabel={removeTaskLabel}
         />
-        {!isEmpty(imageURLs) && !isEmpty(task.labels) && (
-          <UnstyledButton
-            disabled={loading}
-            style={{ opacity: loading ? 0.5 : 1 }}
-            onClick={() => {
-              setLoading(true);
-              createTaskBatch(task.labels, imageURLs)
-                .then(({ data }) => {
-                  console.log(data);
-                  return createCheckoutSession({
-                    product_id: "",
-                    quantity: imageURLs.length,
-                    batch_identifier: data.task_batch.batch_identifier,
-                  });
-                })
-                // TODO: catch errors
-                .finally(() => setLoading(false));
-            }}
-          >
-            Checkout
-          </UnstyledButton>
-        )}
+        {!isEmpty(imageURLs) &&
+          !isEmpty(task.labels) &&
+          task.labels.length >= minLabels && (
+            <PromptButton
+              // TODO: add "yes should prompt "
+              disabled={loading}
+              shouldPrompt={imageURLs.some(
+                (url) => !url.match(urlWithHTTPRegex)
+              )}
+              modalConfig={{
+                title: "Hold up!",
+                subtitle:
+                  "It looks like some of the image urls you uploaded may be formatted incorrectly. " +
+                  "If a URL isn't accessible, we won't be able to label it.",
+                rejectButton: {
+                  text: "Stop and Review",
+                },
+                approveButton: {
+                  text: "Continue to Checkout",
+                  onClick: proceedToCheckout,
+                },
+              }}
+              style={{ opacity: loading ? 0.5 : 1 }}
+              onClick={proceedToCheckout}
+            >
+              Checkout
+            </PromptButton>
+          )}
       </Column>
     </div>
   );

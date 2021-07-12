@@ -1,0 +1,18 @@
+.defaultStyles {
+  border: none;
+  background: none;
+  position: relative;
+  background-color: transparent;
+  outline: none;
+  font-family: Lato;
+  height: inherit;
+  width: fit-content;
+  line-height: inherit;
+  border-radius: 4;
+  padding: 0px;
+  margin: 0px;
+}
+
+.defaultStyles > .pseudo-loader {
+  background-color: transparent;
+}
