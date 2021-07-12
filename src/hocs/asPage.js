@@ -1,22 +1,14 @@
 import React, { useEffect, useState } from "react";
-import Column from "../components/Layout/Column";
-import Row from "../components/Layout/Row";
-import styles from "./sidebarStyles.css";
-import regStyles from "../styles/constants";
-import classNames from "classnames";
 
 // images
 import { ReactComponent as Logo } from "../assets/logo_no_shadow.svg";
 
 // Components
 import { UnstyledButton } from "../components/Button/UnstyledButton";
+import DropdownMenu from "../components/DropdownMenu/DropdownMenu";
 import { Link, useLocation } from "react-router-dom";
-import {
-  APP_ACCOUNT_PATH,
-  APP_BATCHES_PATH,
-  APP_BUILD_PATH,
-  APP_CREATE_BATCH_PATH,
-} from "../constants";
+import Column from "../components/Layout/Column";
+import Row from "../components/Layout/Row";
 
 // icons
 import {
@@ -29,11 +21,28 @@ import { FaCloudUploadAlt } from "react-icons/fa";
 import { RiDashboardLine, RiStackLine } from "react-icons/ri";
 import { BiAddToQueue } from "react-icons/bi";
 
+// Styles
+import styles from "./sidebarStyles.css";
+import regStyles from "../styles/constants";
+
 // Context
 import { AuthContext } from "../context/AuthContext";
+
+// Queries
 import { fetchUser } from "../utils/queries";
+
+// Utils
+import classNames from "classnames";
 import { capitalize } from "lodash";
-import DropdownMenu from "../components/DropdownMenu/DropdownMenu";
+
+// Constants
+import {
+  APP_ACCOUNT_PATH,
+  APP_BATCHES_PATH,
+  APP_BUILD_PATH,
+  APP_CREATE_BATCH_PATH,
+  APP_PATH,
+} from "../constants";
 
 const headerHeight = 60;
 const sidebarWidth = 250;
@@ -72,7 +81,7 @@ const batchLinks = [
 const topSection = {
   links: [
     {
-      to: "",
+      to: APP_BATCHES_PATH,
       Icon: RiDashboardLine,
       title: "Dashboard",
     },
@@ -224,7 +233,7 @@ const Section = ({ section: { title, links } }) => {
 };
 
 const FinalSection = ({}) => {
-  const to = "";
+  const to = APP_PATH;
   const title = "Settings";
 
   return (

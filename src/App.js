@@ -28,10 +28,10 @@ import BatchUploader from "./pages/BatchUploader/BatchUploader";
 import BatchManager from "./pages/BatchManager/BatchManager";
 
 const privateRoutes = [
-  {
-    path: APP_BUILD_PATH,
-    Component: Build,
-  },
+  // {
+  //   path: APP_BUILD_PATH,
+  //   Component: Build,
+  // },
   {
     path: APP_BATCHES_PATH,
     Component: BatchManager,
@@ -145,7 +145,7 @@ function App() {
             ))}
             {/**CATCH PRIVATE ROUTES */}
             <Route path={APP_PATH + "*"}>
-              <Redirect to={APP_BUILD_PATH} />
+              <Redirect to={APP_CREATE_BATCH_PATH} />
             </Route>
             {/**CATCH PUBLIC ROUTES */}
             <Route path="*">
