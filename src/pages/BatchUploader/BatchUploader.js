@@ -5,6 +5,7 @@ import { useModalService } from "../../components/ModalContainer/ModalService";
 import { UnstyledButton } from "../../components/Button/UnstyledButton";
 import { SearchBar } from "../../components/SearchBar/SearchBar";
 import DropdownMenu from "../../components/DropdownMenu/DropdownMenu";
+import PromptButton from "../../components/Button/PromptButton";
 import Column from "../../components/Layout/Column";
 import Row from "../../components/Layout/Row";
 
@@ -26,7 +27,6 @@ import regStyles from "../../styles/constants";
 import { createCheckoutSession, createTaskBatch } from "../../utils/queries";
 
 import styles from "./BatchUploader.css";
-import PromptButton from "../../components/Button/PromptButton";
 
 const urlWithHTTPRegex =
   /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g;

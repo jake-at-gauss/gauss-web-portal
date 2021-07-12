@@ -20,8 +20,6 @@ export const createUser = async (formFields) => {
       "Access-Control-Allow-Origin": "*",
       "Content-type": "application/json",
     },
-  }).then((data) => {
-    return data.status;
   });
 };
 
@@ -34,8 +32,6 @@ export const login = async (formFields) => {
       "Access-Control-Allow-Origin": "*",
       "Content-type": "application/json",
     },
-  }).then((data) => {
-    return data.status;
   });
 };
 

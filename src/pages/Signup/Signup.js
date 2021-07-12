@@ -75,7 +75,7 @@ const Signup = ({ login }) => {
     <div className={styles.signupPage}>
       <p style={{ flex: 1 }}>&nbsp;</p>
       <div className={styles.signupContainer}>
-        <img className={styles.signupLogo} src="/images/logos/gauss_logo.svg" />
+        {/* <img className={styles.signupLogo} src="/images/logos/gauss_logo.svg" /> */}
         <div className={styles.signupElements}>
           <Input
             info={"Enter your first name"}

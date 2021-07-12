@@ -9,12 +9,7 @@ import styles from "./login.css";
 
 // Utils
 import { verifyFormFields } from "../../utils/verification";
-import {
-  EMAIL,
-  SIGNUP_PATH,
-  PASSWORD,
-  STATUS_SUCCESS,
-} from "../../constants";
+import { EMAIL, SIGNUP_PATH, PASSWORD, STATUS_SUCCESS } from "../../constants";
 import { login as loginUser } from "../../utils/queries";
 import { UnstyledButton } from "../../components/Button/UnstyledButton";
 import { Link } from "react-router-dom";
@@ -59,10 +54,21 @@ const Login = ({ login }) => {
         {}
       );
 
-      const status = await loginUser(formValues);
+      const { status } = await loginUser(formValues)
+        .then((data) => data)
+        .catch((data) => data)
+        .finally((data) => data);
 
       if (status === STATUS_SUCCESS) {
         login();
+      } else {
+        setFormFields({
+          ...formFields,
+          [PASSWORD]: {
+            ...formFields[PASSWORD],
+            error: "Invalid user or password",
+          },
+        });
       }
 
       return;
@@ -73,7 +79,7 @@ const Login = ({ login }) => {
     <div className={styles.loginPage}>
       <p style={{ flex: 1 }}>&nbsp;</p>
       <div className={styles.loginContainer}>
-        <img className={styles.loginLogo} src="/images/logos/gauss_logo.svg" />
+        {/* <img className={styles.loginLogo} src="/images/logos/gauss_logo.svg" /> */}
         <div className={styles.loginElements}>
           <Input
             info={"Enter your email"}

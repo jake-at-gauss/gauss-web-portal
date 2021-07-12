@@ -42,9 +42,9 @@ export const STATUS_SUCCESS = 200;
 
 //Paths
 
-export const SIGNUP_PATH = "/signup";
-export const LOGIN_PATH = "/login";
 export const APP_PATH = "/app";
+export const SIGNUP_PATH = "/app/signup";
+export const LOGIN_PATH = "/app/login";
 export const APP_BUILD_PATH = "/app/build";
 // export const APP_ALBUMS_PATH = "/app/albums";
 // export const APP_ALBUM_PATH = "/app/albums/:albumId";
