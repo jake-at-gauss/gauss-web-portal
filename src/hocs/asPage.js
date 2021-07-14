@@ -116,7 +116,7 @@ const Notifications = ({}) => (
 );
 
 // TODO: don't hardcode this ??
-const UserDropdown = ({ user, logout }) =>
+const UserDropdown = ({ user = {}, logout }) =>
   user.loading ? null : (
     <DropdownMenu
       dropdownOptionsClassName={styles.dropdownOptions}

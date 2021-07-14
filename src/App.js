@@ -148,7 +148,7 @@ function App() {
               <Redirect to={APP_CREATE_BATCH_PATH} />
             </Route>
             {/**CATCH PUBLIC ROUTES */}
-            <Route path="*">
+            <Route path={APP_PATH + "*"}>
               <Redirect to={SIGNUP_PATH} />
             </Route>
           </Switch>

@@ -2,6 +2,7 @@
   "name": "web",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://www.trygauss.com/app",
   "dependencies": {
     "@babel/core": "7.12.3",
     "@craco/craco": "^6.0.0",
