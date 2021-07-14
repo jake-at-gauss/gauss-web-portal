@@ -61,12 +61,13 @@ const Signup = ({ login }) => {
         {}
       );
 
-      const status = await createUser(formValues);
+      const { status } = await createUser(formValues);
 
       if (status === STATUS_SUCCESS) {
         login();
       }
 
+      // TODO: handle failed request
       return;
     }
   };
@@ -111,9 +112,7 @@ const Signup = ({ login }) => {
             <p>
               Already have an account?{" "}
               <Link to={LOGIN_PATH}>
-              <span className={styles.cursorText}>
-                Log in here!
-              </span>
+                <span className={styles.cursorText}>Log in here!</span>
               </Link>
             </p>
           </div>
