@@ -12,6 +12,7 @@ import Row from "../components/Layout/Row";
 
 // icons
 import {
+  IoIosMail,
   IoIosSettings,
   IoMdArrowDropdown,
   IoMdNotifications,
@@ -233,13 +234,24 @@ const Section = ({ section: { title, links } }) => {
 };
 
 const FinalSection = ({}) => {
-  const to = APP_PATH;
-  const title = "Settings";
+  // const to = APP_PATH;
+  // const title = "Settings";
+
+  const to = "#";
+  const title = "Contact Us";
+
+  // delete when swapping to settings
+  const mailTo = "mailto:jake@trygauss.com";
 
   return (
     <Column className={styles.finalSection}>
-      <Link className={classNames(styles.sidebarLinkWrapper)} to={to}>
-        <IoIosSettings
+      <Link
+        className={classNames(styles.sidebarLinkWrapper)}
+        to={to}
+        onClick={() => (window.location = mailTo)}
+      >
+        {/* <IoIosSettings */}
+        <IoIosMail
           className={styles.sidebarIcon}
           style={{
             color: regStyles.gray95,
