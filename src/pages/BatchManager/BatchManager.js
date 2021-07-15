@@ -35,8 +35,8 @@ const gridConfig = [
 
 const EmptyState = ({}) => {
   return (
-    <Column style>
-      <span>It looks like you haven't created any Batches yet! </span>
+    <Column  style={{ paddingTop: 16 }}>
+      <span>It looks like you haven't created any batches yet! </span>
     </Column>
   );
 };
@@ -46,7 +46,7 @@ const Grid = ({ gridProps, data, config, emptyState }) => {
     <Column {...gridProps}>
       <Row>
         {config.map(({ title, flex = 1 }, i) => (
-          <div key={i} style={{ flex, fontWeight: 'bold' }}>
+          <div key={i} style={{ flex, fontWeight: "bold" }}>
             {title}
           </div>
         ))}
