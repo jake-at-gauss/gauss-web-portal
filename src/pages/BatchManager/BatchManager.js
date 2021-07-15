@@ -13,7 +13,9 @@ import { fetchBatches } from "../../utils/queries";
 import { UnstyledButton } from "../../components/Button/UnstyledButton";
 
 // Styles
+import styles from "./BatchManager.css";
 import regStyles from "../../styles/constants";
+import { RiStackLine } from "react-icons/ri";
 
 const gridConfig = [
   {
@@ -35,7 +37,7 @@ const gridConfig = [
 
 const EmptyState = ({}) => {
   return (
-    <Column  style={{ paddingTop: 16 }}>
+    <Column style={{ paddingTop: 16 }}>
       <span>It looks like you haven't created any batches yet! </span>
     </Column>
   );
@@ -65,6 +67,22 @@ const Grid = ({ gridProps, data, config, emptyState }) => {
     </Column>
   );
 };
+
+const withPageWrapper =
+  (Component) =>
+  ({}) => {
+    return (
+      <div className={styles.container}>
+        <h2 style={{ display: "flex" }}>
+          <RiStackLine />
+          <span style={{ marginLeft: 8 }}>Manage Task Batches</span>
+        </h2>
+        <Column className={styles.managementContainer}>
+          <Component />
+        </Column>
+      </div>
+    );
+  };
 
 const BatchManager = ({}) => {
   const [loading, setLoading] = useState(true);
@@ -130,4 +148,4 @@ const BatchManager = ({}) => {
   );
 };
 
-export default BatchManager;
+export default withPageWrapper(BatchManager);
