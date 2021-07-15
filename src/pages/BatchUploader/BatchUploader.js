@@ -296,9 +296,8 @@ const BatchUploader = ({}) => {
       <input
         ref={inputRef}
         onChange={addFiles}
-        accept="image/*"
+        accept=".csv"
         type="file"
-        multiple
         style={{ display: "none" }}
       />
       <h2 style={{ display: "flex" }}>
@@ -324,7 +323,7 @@ const BatchUploader = ({}) => {
             </div>
             {duplicates > 0 && (
               <div style={{ marginBottom: 4, marginTop: 4 }}>
-                <span>Duplicates Filtered: {imageURLs.length}</span>
+                <span>Duplicates Filtered: {duplicates}</span>
               </div>
             )}
             <Column
