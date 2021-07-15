@@ -387,12 +387,35 @@ const BatchUploader = ({}) => {
                 alignItems: "center",
                 justifyContent: "center",
                 fontSize: 18,
+                borderRadius: 8,
               }}
               onClick={proceedToCheckout}
             >
               Save and Pay
             </PromptButton>
           )}
+        <span
+          style={{
+            fontWeight: "bold",
+            color: regStyles.dark,
+            fontSize: 14,
+            marginTop: 32,
+          }}
+        >
+          *Our average turnaround time on a dataset is less than 24 hours, but
+          we may take up to 3 days as we balance demand during our open beta.
+        </span>
+        <span
+          style={{
+            fontWeight: "bold",
+            color: regStyles.dark,
+            fontSize: 14,
+            marginTop: 8,
+          }}
+        >
+          **For questions or concerns, please reach out to jake@trygauss.com or
+          andrew@trygauss.com.
+        </span>
       </Column>
     </div>
   );
