@@ -104,8 +104,8 @@ const batchSection = {
 
 const HeaderSearch = ({}) => (
   <Row justify align style={{ marginLeft: "auto", marginRight: 16 }}>
-    <IoMdSearch size={20} />
-    <span style={{ marginLeft: 8 }}>Search</span>
+    {/* <IoMdSearch size={20} />
+    <span style={{ marginLeft: 8 }}>Search</span> */}
   </Row>
 );
 
