@@ -46,7 +46,7 @@ const Grid = ({ gridProps, data, config, emptyState }) => {
     <Column {...gridProps}>
       <Row>
         {config.map(({ title, flex = 1 }, i) => (
-          <div key={i} style={{ flex }}>
+          <div key={i} style={{ flex, fontWeight: 'bold' }}>
             {title}
           </div>
         ))}
