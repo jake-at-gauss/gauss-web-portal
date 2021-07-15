@@ -3,10 +3,12 @@ import { useModalService } from "../../components/ModalContainer/ModalService";
 
 // Components
 import { UnstyledButton } from "../../components/Button/UnstyledButton";
-import { SearchBar } from "../../components/SearchBar/SearchBar";
 import DropdownMenu from "../../components/DropdownMenu/DropdownMenu";
+import { SearchBar } from "../../components/SearchBar/SearchBar";
 import PromptButton from "../../components/Button/PromptButton";
+import ToolTip from "../../components/ToolTip/ToolTip";
 import Column from "../../components/Layout/Column";
+import { RiArrowRightSLine, RiQuestionLine } from "react-icons/ri";
 import Row from "../../components/Layout/Row";
 
 // Utils
@@ -22,11 +24,10 @@ import { GENERIC_MESSAGE_MODAL } from "../../components/ModalContainer/ModalCons
 
 // Styles
 import regStyles from "../../styles/constants";
+import styles from "./BatchUploader.css";
 
 // Queries
 import { createCheckoutSession, createTaskBatch } from "../../utils/queries";
-
-import styles from "./BatchUploader.css";
 
 const urlWithHTTPRegex =
   /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g;
@@ -34,6 +35,32 @@ const taskTypes = ["Classification"];
 const emptyTask = { type: "", labels: [] };
 const maxLabels = 8;
 const minLabels = 2;
+
+const filterAndReturnDuplicates = (arr) => {
+  return arr.reduce(
+    (acc, currVal, currI) =>
+      arr.indexOf(currVal) === currI
+        ? [[...acc[0], currVal], acc[1]] // Add, not a duplicate
+        : [acc[0], acc[1] + 1], // Don't add, increment duplicate
+    [[], 0] // initial value
+  );
+};
+
+const UploadExplanation = ({}) => {
+  return (
+    <div style={{ width: 300, whiteSpace: "pre-wrap" }}>
+      Upload a csv with a list of urls that point to the images you would like
+      to label.
+      {"\n\n"}
+      Go ahead and drop any headers or metadata you have in the csv - we grab
+      everything!
+      {"\n\n"}
+      Make sure the images are publicly available for the duration of the
+      labeling request - if we can't access your images then we can't label
+      them!
+    </div>
+  );
+};
 
 const DropdownOptions = ({ onClick, options }) => (
   <Column>
@@ -52,7 +79,14 @@ const TaskCreation = ({ task, setTaskType, addTaskLabel, removeTaskLabel }) => {
       {/** EZ Task Creation */}
       <Row style={{ marginTop: 16 }}>
         <Column>
-          <span style={{ marginBottom: 4, fontSize: 10, fontWeight: "bold" }}>
+          <span
+            style={{
+              marginBottom: 4,
+              marginLeft: 4,
+              fontSize: 10,
+              fontWeight: "bold",
+            }}
+          >
             task type
           </span>
           <DropdownMenu
@@ -65,7 +99,7 @@ const TaskCreation = ({ task, setTaskType, addTaskLabel, removeTaskLabel }) => {
             }
           >
             <SearchBar
-              placeholder="Task Type"
+              placeholder="Select Task Type"
               value={task.type}
               style={{ width: 250 }}
               iconProps={{ style: { display: "none" } }}
@@ -160,6 +194,7 @@ const LabelInput = ({ labels = [], addLabel, removeLabel }) => {
 
 const BatchUploader = ({}) => {
   const [imageURLs, setImageURLs] = useState([]);
+  const [duplicates, setDuplicates] = useState(0);
   const [loading, setLoading] = useState(false);
   const [task, setTask] = useState(emptyTask);
   const [_, { openModal }] = useModalService();
@@ -202,7 +237,11 @@ const BatchUploader = ({}) => {
 
     reader.onload = (e) => {
       if (!!get(e, "target.result")) {
-        setImageURLs(parseArrayFromCSV(e.target.result));
+        const [urls, duplicates] = filterAndReturnDuplicates(
+          parseArrayFromCSV(e.target.result)
+        );
+        setImageURLs(urls);
+        setDuplicates(duplicates);
       }
     };
 
@@ -245,13 +284,42 @@ const BatchUploader = ({}) => {
           >
             Upload
           </UnstyledButton>
+          <Column className={styles.hoverIcon}>
+            <ToolTip tooltip={<UploadExplanation />}>
+              <RiQuestionLine size={32} />
+            </ToolTip>
+          </Column>
           <Column style={{ maxWidth: "-webkit-fill-available" }}>
-            <div style={{ marginBottom: 4 }}>
-              <span>Image URLs selected: {imageURLs.length}</span>
+            <div style={{ marginBottom: 4, marginTop: 8 }}>
+              <span>Image URLs Selected: {imageURLs.length}</span>
             </div>
-            <Column className={styles.imgListContainer}>
-              {imageURLs.map((imgURL) => (
-                <span>{imgURL}</span>
+            {duplicates > 0 && (
+              <div style={{ marginBottom: 4, marginTop: 4 }}>
+                <span>Duplicates Filtered: {imageURLs.length}</span>
+              </div>
+            )}
+            <Column
+              style={{
+                height: Math.min(imageURLs.length * 21, 250),
+                ...(imageURLs.length === 0 && { border: "none" }),
+              }}
+              className={styles.imgListContainer}
+            >
+              {imageURLs.map((imgURL, i) => (
+                <Row key={imgURL}>
+                  <UnstyledButton
+                    onClick={() =>
+                      setImageURLs(
+                        imageURLs.filter((v, targetindex) => targetindex !== i)
+                      )
+                    }
+                  >
+                    <IoIosCloseCircle
+                      style={{ color: regStyles.dark, marginRight: 8 }}
+                    />
+                  </UnstyledButton>
+                  <span>{imgURL}</span>
+                </Row>
               ))}
             </Column>
           </Column>
@@ -266,7 +334,7 @@ const BatchUploader = ({}) => {
           !isEmpty(task.labels) &&
           task.labels.length >= minLabels && (
             <PromptButton
-              // TODO: add "yes should prompt "
+              className={styles.checkoutBtn}
               disabled={loading}
               shouldPrompt={imageURLs.some(
                 (url) => !url.match(urlWithHTTPRegex)
@@ -284,10 +352,16 @@ const BatchUploader = ({}) => {
                   onClick: proceedToCheckout,
                 },
               }}
-              style={{ opacity: loading ? 0.5 : 1 }}
+              buttonStyles={{
+                opacity: loading ? 0.5 : 1,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 18,
+              }}
               onClick={proceedToCheckout}
             >
-              Checkout
+              Save and Pay
             </PromptButton>
           )}
       </Column>
