@@ -13,6 +13,7 @@ import {
   APP_BUILD_PATH,
   APP_CREATE_BATCH_PATH,
   APP_PATH,
+  APP_PRICING_INFO_PATH,
   LOGIN_PATH,
   SIGNUP_PATH,
 } from "./constants";
@@ -26,12 +27,17 @@ import Page from "./hocs/asPage";
 import ModalService from "./components/ModalContainer/ModalService";
 import BatchUploader from "./pages/BatchUploader/BatchUploader";
 import BatchManager from "./pages/BatchManager/BatchManager";
+import PricingInfo from "./pages/PricingInfo/PricingInfo";
 
 const privateRoutes = [
   // {
   //   path: APP_BUILD_PATH,
   //   Component: Build,
   // },
+  {
+    path: APP_PRICING_INFO_PATH,
+    Component: PricingInfo,
+  },
   {
     path: APP_BATCHES_PATH,
     Component: BatchManager,

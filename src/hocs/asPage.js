@@ -20,7 +20,7 @@ import {
 } from "react-icons/io";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { RiDashboardLine, RiStackLine } from "react-icons/ri";
-import { BiAddToQueue } from "react-icons/bi";
+import { BiAddToQueue, BiInfoCircle } from "react-icons/bi";
 
 // Styles
 import styles from "./sidebarStyles.css";
@@ -43,6 +43,7 @@ import {
   APP_BUILD_PATH,
   APP_CREATE_BATCH_PATH,
   APP_PATH,
+  APP_PRICING_INFO_PATH,
 } from "../constants";
 
 const headerHeight = 60;
@@ -79,6 +80,14 @@ const batchLinks = [
   },
 ];
 
+const infoLinks = [
+  {
+    to: APP_PRICING_INFO_PATH,
+    Icon: BiInfoCircle,
+    title: "Pricing",
+  },
+];
+
 const topSection = {
   links: [
     {
@@ -101,6 +110,13 @@ const batchSection = {
     text: "BATCH MANAGEMENT",
   },
   links: batchLinks,
+};
+
+const infoSection = {
+  title: {
+    text: "INFO",
+  },
+  links: infoLinks,
 };
 
 const HeaderSearch = ({}) => (
@@ -291,6 +307,7 @@ const Page = ({ content, logout }) => {
                 <Section section={topSection} />
                 {/* <Section section={mainSection} /> */}
                 <Section section={batchSection} />
+                <Section section={infoSection} />
                 <FinalSection />
               </Column>
             </Row>

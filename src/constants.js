@@ -54,3 +54,5 @@ export const APP_ACCOUNT_PATH = "/app/account";
 export const APP_CREATE_BATCH_PATH = "/app/create_batch";
 export const APP_BATCHES_PATH = "/app/batch_management";
 export const APP_BATCH_PATH = "/app/batch/:id";
+
+export const APP_PRICING_INFO_PATH = "/app/pricing";
