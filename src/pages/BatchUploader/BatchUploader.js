@@ -256,7 +256,36 @@ const BatchUploader = ({}) => {
           product_id: "",
           quantity: imageURLs.length,
           batch_identifier: data.task_batch.batch_identifier,
-        });
+        }).catch(() =>
+          openModal(GENERIC_MESSAGE_MODAL, {
+            title: "Uh Oh!",
+            blocks: [
+              {
+                text: "It looks like we're having some issues with Stripe. Don't worry! We've got your batch saved and ready to go.",
+              },
+              {
+                text: (
+                  <span>
+                    Shoot me an email at{" "}
+                    <a href="mailto:jake@trygauss.com?subject=Stripe Issues">
+                      jake@trygauss.com
+                    </a>{" "}
+                    and we'll get your payment underway and your batch labeled
+                    asap.
+                  </span>
+                ),
+              },
+              {
+                text: (
+                  <span>
+                    Don't forget to reference batch id{" "}
+                    {data.task_batch.batch_identifier}.
+                  </span>
+                ),
+              },
+            ],
+          })
+        );
       })
       // TODO: catch errors
       .finally(() => setLoading(false));
