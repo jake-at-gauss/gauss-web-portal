@@ -1,0 +1,20 @@
+.tooltipContainer {
+  position: relative;
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  background: white;
+  width: fit-content;
+  border-radius: 4px;
+  padding: 8px;
+  left: 100%;
+  right: 0;
+  box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.4);
+  z-index: 1000;
+}
+
+.tooltipContainer:hover .tooltip {
+  display: block;
+}
