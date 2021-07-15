@@ -2,11 +2,8 @@
   "name": "web",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://www.trygauss.com/app",
   "dependencies": {
     "@babel/core": "7.12.3",
-    "@craco/craco": "^6.0.0",
-    "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/react-fontawesome": "^0.1.13",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.2",
