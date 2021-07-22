@@ -257,7 +257,7 @@ const FinalSection = ({}) => {
   const title = "Contact Us";
 
   // delete when swapping to settings
-  const mailTo = "mailto:jake@trygauss.com";
+  const mailTo = "mailto:support@trygauss.com";
 
   return (
     <Column className={styles.finalSection}>

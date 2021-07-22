@@ -49,8 +49,8 @@ const PricingInfo = ({}) => {
           self-serve data labeling. More to come soon!
         </span>
         <span style={{ marginTop: 8 }}>
-          **For custom pricing on large or recurring orders please reach out to us at{" "}
-          <a href="mailto:andrew@trygauss.com">andrew@trygauss.com</a>.
+          **For custom pricing on large or recurring orders please reach out to
+          us at <a href="mailto:sales@trygauss.com">sales@trygauss.com</a>.
         </span>
       </Column>
     </Column>
