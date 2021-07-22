@@ -266,9 +266,9 @@ const BatchUploader = ({}) => {
               {
                 text: (
                   <span>
-                    Shoot me an email at{" "}
-                    <a href="mailto:jake@trygauss.com?subject=Stripe Issues">
-                      jake@trygauss.com
+                    Send us an email at{" "}
+                    <a href="mailto:support@trygauss.com?subject=Stripe Issues">
+                      support@trygauss.com
                     </a>{" "}
                     and we'll get your payment underway and your batch labeled
                     asap.
@@ -412,8 +412,8 @@ const BatchUploader = ({}) => {
             marginTop: 8,
           }}
         >
-          **For questions or concerns, please reach out to jake@trygauss.com or
-          andrew@trygauss.com.
+          **For questions or concerns, please reach out to{" "}
+          <a href="mailto:support@trygauss.com">support@trygauss.com</a>.
         </span>
       </Column>
     </div>
