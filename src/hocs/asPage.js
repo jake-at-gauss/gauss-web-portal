@@ -225,23 +225,14 @@ const Section = ({ section: { title, links } }) => {
         return (
           <Link
             key={to}
-            className={classNames(styles.sidebarLinkWrapper)}
+            className={classNames(
+              styles.sidebarLinkWrapper,
+              selected && styles.selected
+            )}
             to={to}
           >
-            <Icon
-              className={styles.sidebarIcon}
-              style={{
-                color: selected ? regStyles.base : regStyles.gray95,
-              }}
-            />
-            <span
-              className={styles.navText}
-              style={{
-                color: selected ? regStyles.base : regStyles.gray95,
-              }}
-            >
-              {title.toUpperCase()}
-            </span>
+            <Icon className={styles.sidebarIcon} />
+            <span className={styles.navText}>{title.toUpperCase()}</span>
           </Link>
         );
       })}

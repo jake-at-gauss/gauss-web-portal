@@ -6,10 +6,12 @@ import {
   CREATE_RATEABLE_TEMPLATE,
   CREATE_TASK_BATCH,
   CREATE_USER,
+  GET_TASKS_FROM_BATCH,
   GET_TASK_BATCHES,
   GET_USER,
   LOGIN,
 } from "../constants";
+import { composePath } from "./general";
 
 export const createUser = async (formFields) => {
   return axios({
@@ -94,5 +96,12 @@ export const fetchUser = async (user = 0) => {
   return axios({
     method: GET_USER.METHOD,
     url: `${GET_USER.ROUTE}${user}/`,
+  });
+};
+
+export const fetchBatchTasks = async (batch_identifier) => {
+  return axios({
+    method: GET_TASKS_FROM_BATCH.METHOD,
+    url: composePath(GET_TASKS_FROM_BATCH.ROUTE, { task_id: batch_identifier }),
   });
 };

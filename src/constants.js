@@ -31,10 +31,15 @@ export const GET_TASK_BATCHES = {
   ROUTE: "/api/task-batch/all/",
   METHOD: "get",
 };
+export const GET_TASKS_FROM_BATCH = {
+  ROUTE: "/api/task-batch/classification/:task_id/details/",
+  METHOD: "get",
+};
 export const CREATE_CHECKOUT_SESSION = {
   ROUTE: "/api/create-checkout-session/",
   METHOD: "post",
 };
+
 
 //Status Codes
 
