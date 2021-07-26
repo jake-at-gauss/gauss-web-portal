@@ -1,4 +1,7 @@
 import styles from "./App.css";
+import { useState } from "react";
+
+// Routing
 import {
   Redirect,
   Route,
@@ -7,9 +10,25 @@ import {
   useHistory,
   useLocation,
 } from "react-router";
+
+// Utils
+import { get } from "lodash";
+import { AuthContext } from "./context/AuthContext";
+import { deleteCookie, getCookie } from "./utils/auth";
+import ModalService from "./components/ModalContainer/ModalService";
+
+// Pages
+import Page from "./hocs/asPage";
+import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup.js";
+import PricingInfo from "./pages/PricingInfo/PricingInfo";
+import BatchManager from "./pages/BatchManager/BatchManager";
+import BatchUploader from "./pages/BatchUploader/BatchUploader";
+
+// Constants
 import {
   APP_BATCHES_PATH,
+  APP_BATCH_PATH,
   APP_BUILD_PATH,
   APP_CREATE_BATCH_PATH,
   APP_PATH,
@@ -17,17 +36,7 @@ import {
   LOGIN_PATH,
   SIGNUP_PATH,
 } from "./constants";
-import { useState } from "react";
-import { deleteCookie, getCookie } from "./utils/auth";
-import { AuthContext } from "./context/AuthContext";
-import { get } from "lodash";
-import Login from "./pages/Login/Login";
-import Build from "./pages/Build/Build";
-import Page from "./hocs/asPage";
-import ModalService from "./components/ModalContainer/ModalService";
-import BatchUploader from "./pages/BatchUploader/BatchUploader";
-import BatchManager from "./pages/BatchManager/BatchManager";
-import PricingInfo from "./pages/PricingInfo/PricingInfo";
+import BatchViewer from "./pages/BatchViewer/BatchViewer";
 
 const privateRoutes = [
   // {
@@ -45,6 +54,10 @@ const privateRoutes = [
   {
     path: APP_CREATE_BATCH_PATH,
     Component: BatchUploader,
+  },
+  {
+    path: APP_BATCH_PATH,
+    Component: BatchViewer,
   },
   // {
   //   path: APP_ALBUMS_PATH,

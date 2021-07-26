@@ -42,10 +42,22 @@
   align-items: center;
   text-decoration: none;
   margin-bottom: 8px;
+  border-radius: 4px;
+  color: #09231095;
+  transition: all 0.2s;
 }
 
 .sidebarLinkWrapper:last-child {
   margin-bottom: 0;
+}
+
+.sidebarLinkWrapper:hover {
+  background: #4cac6430;
+  color: #4cac64;
+}
+
+.sidebarLinkWrapper.selected {
+  color: #4cac64;
 }
 
 .sidebarIcon {
