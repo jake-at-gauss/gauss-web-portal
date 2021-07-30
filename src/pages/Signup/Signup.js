@@ -20,6 +20,10 @@ import {
 import { createUser } from "../../utils/queries";
 import { UnstyledButton } from "../../components/Button/UnstyledButton";
 import { Link, useLocation } from "react-router-dom";
+import Row from "../../components/Layout/Row";
+
+import { ReactComponent as Logo } from "../../assets/logo_no_shadow.svg";
+import regStyles from "../../styles/constants";
 
 const Signup = ({ login }) => {
   const location = useLocation();
@@ -83,7 +87,10 @@ const Signup = ({ login }) => {
     <div className={styles.signupPage}>
       <p style={{ flex: 1 }}>&nbsp;</p>
       <div className={styles.signupContainer}>
-        {/* <img className={styles.signupLogo} src="/images/logos/gauss_logo.svg" /> */}
+        <Row align style={{ width: "70%" }}>
+          <Logo style={{ marginRight: 8 }} width="3em" />
+          <h1 style={{ color: regStyles.base }}>Gauss</h1>
+        </Row>
         <div className={styles.signupElements}>
           <Input
             info={"Enter your first name"}
