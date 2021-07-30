@@ -2,11 +2,13 @@ import { isEmpty } from "lodash";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { RiCheckboxMultipleBlankLine } from "react-icons/ri";
+import { UnstyledButton } from "../../components/Button/UnstyledButton";
 import Grid from "../../components/Grid/Grid";
 import Column from "../../components/Layout/Column";
 import Row from "../../components/Layout/Row";
 import { APP_BATCH_PATH } from "../../constants";
 import withPageWrapper from "../../hocs/withPageWrapper";
+import regStyles from "../../styles/constants";
 import { parsePath } from "../../utils/general";
 import { fetchBatchTasks } from "../../utils/queries";
 
@@ -71,6 +73,16 @@ const BatchViewer = ({}) => {
   const [tasks, setTasks] = useState([]);
   const [batch, setBatch] = useState({});
 
+  const csvContent = tasks
+    .reduce(
+      (acc, { image, selected_option }) => [
+        ...acc,
+        `${image.origin_url},${selected_option}`,
+      ],
+      ["data:text/csv;charset=utf-8,"]
+    )
+    .join("\n");
+
   // Pagination
   //   const [pagination, setPagination] = useState({ page: 1, more: false });
   //   const incrementPage = () =>
@@ -94,31 +106,45 @@ const BatchViewer = ({}) => {
 
   return (
     <Column>
-      <Column className={styles.componentContainer}>
-        <Row align>
-          <b>Batch Type: </b>
-          <span style={{ padding: 4 }}>Classification</span>
-        </Row>
-        <Row align style={{ marginTop: 8 }}>
-          <b>Batch Status: </b>
-          <span style={{ padding: 4 }}>
-            {batch.status === "in progress"
-              ? `${Math.round(
-                  (100 *
-                    tasks.filter(({ status }) => status === "completed")
-                      .length) /
-                    tasks.length
-                )}% Complete`
-              : batch.status}
-          </span>
-        </Row>
-        {!isEmpty(batch.options) && (
-          <Row align style={{ marginTop: 8 }}>
-            <b>Batch Options: </b>
-            {batch.options.map(renderBatchOption)}
+      <Row className={styles.componentContainer}>
+        <Column>
+          <Row align>
+            <b>Batch Type: </b>
+            <span style={{ padding: 4 }}>Classification</span>
           </Row>
-        )}
-      </Column>
+          <Row align style={{ marginTop: 8 }}>
+            <b>Batch Status: </b>
+            <span style={{ padding: 4 }}>
+              {batch.status === "in progress"
+                ? `${Math.round(
+                    (100 *
+                      tasks.filter(({ status }) => status === "completed")
+                        .length) /
+                      tasks.length
+                  )}% Complete`
+                : batch.status}
+            </span>
+          </Row>
+          {!isEmpty(batch.options) && (
+            <Row align style={{ marginTop: 8 }}>
+              <b>Batch Options: </b>
+              {batch.options.map(renderBatchOption)}
+            </Row>
+          )}
+        </Column>
+        <Column style={{ flex: 1 }}>
+          <a
+            style={{
+              color: regStyles.base,
+              fontWeight: "bold",
+            }}
+            href={encodeURI(csvContent)}
+            download={`${batch.batch_identifier || moment.now()}_results.csv`}
+          >
+            Export to CSV
+          </a>
+        </Column>
+      </Row>
       <Column className={styles.componentContainer} style={{ marginTop: 32 }}>
         <Grid
           data={tasks}

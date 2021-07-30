@@ -19,13 +19,20 @@ import {
 } from "../../constants";
 import { createUser } from "../../utils/queries";
 import { UnstyledButton } from "../../components/Button/UnstyledButton";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Signup = ({ login }) => {
+  const location = useLocation();
+  let params = new URLSearchParams(location.search);
+
+  const name = params.get("name").split(" ");
+  const first_name = name[0] || "";
+  const last_name = name.slice(1).join(" ") || "";
+
   const [formFields, setFormFields] = useState({
-    [FIRST_NAME]: { value: "", error: "" },
-    [LAST_NAME]: { value: "", error: "" },
-    [EMAIL]: { value: "", error: "" },
+    [FIRST_NAME]: { value: first_name, error: "" },
+    [LAST_NAME]: { value: last_name, error: "" },
+    [EMAIL]: { value: params.get("email"), error: "" },
     [PASSWORD]: { value: "", error: "" },
   });
 
