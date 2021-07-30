@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 // Components
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
+import { ReactComponent as Logo } from "../../assets/logo_no_shadow.svg";
 
 // Styles
 import styles from "./login.css";
@@ -13,6 +14,8 @@ import { EMAIL, SIGNUP_PATH, PASSWORD, STATUS_SUCCESS } from "../../constants";
 import { login as loginUser } from "../../utils/queries";
 import { UnstyledButton } from "../../components/Button/UnstyledButton";
 import { Link } from "react-router-dom";
+import regStyles from "../../styles/constants";
+import Row from "../../components/Layout/Row";
 
 const Login = ({ login }) => {
   const [formFields, setFormFields] = useState({
@@ -79,7 +82,10 @@ const Login = ({ login }) => {
     <div className={styles.loginPage}>
       <p style={{ flex: 1 }}>&nbsp;</p>
       <div className={styles.loginContainer}>
-        {/* <img className={styles.loginLogo} src="/images/logos/gauss_logo.svg" /> */}
+        <Row align style={{ width: "70%" }}>
+          <Logo style={{ marginRight: 8 }} width="3em" />
+          <h1 style={{ color: regStyles.base }}>Gauss</h1>
+        </Row>
         <div className={styles.loginElements}>
           <Input
             info={"Enter your email"}
