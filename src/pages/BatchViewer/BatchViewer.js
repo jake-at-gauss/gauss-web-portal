@@ -194,7 +194,7 @@ const BatchViewer = ({}) => {
 
 export default withPageWrapper(BatchViewer, {
   Icon: RiCheckboxMultipleBlankLine,
-  title: "Batch " + parsePath(APP_BATCH_PATH).id,
+  title: (() => "Batch " + parsePath(APP_BATCH_PATH).id)(),
   styles: {
     componentContainer: styles.pageContainer,
   },
