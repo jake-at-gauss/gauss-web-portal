@@ -25,7 +25,7 @@ const Signup = ({ login }) => {
   const location = useLocation();
   let params = new URLSearchParams(location.search);
 
-  const name = params.get("name").split(" ");
+  const name = (params.get("name") || "").split(" ");
   const first_name = name[0] || "";
   const last_name = name.slice(1).join(" ") || "";
 
