@@ -35,7 +35,9 @@ const Login = ({ login }) => {
     });
   };
 
-  const forgotPassword = () => {};
+  const forgotPassword = () => {
+    window.location = "mailto:support@trygauss.com"
+  };
 
   // First submits formData to verify and returns the same object but with errors filled in
   // then counts the number of errors
