@@ -7,12 +7,16 @@ import Grid from "../../components/Grid/Grid";
 import Column from "../../components/Layout/Column";
 import Row from "../../components/Layout/Row";
 import { APP_BATCH_PATH } from "../../constants";
-import withPageWrapper from "../../hocs/withPageWrapper";
+import { PageWrapper } from "../../hocs/withPageWrapper";
 import regStyles from "../../styles/constants";
 import { parsePath } from "../../utils/general";
 import { fetchBatchTasks } from "../../utils/queries";
 
 import styles from "./BatchViewer.css";
+
+const rowDecorator = ({ image }) => {
+  return image.is_error ? { background: "#ff000020", color: "red" } : {};
+};
 
 const gridConfig = [
   {
@@ -26,20 +30,33 @@ const gridConfig = [
     accessor: "status",
     flex: 25,
     style: { marginTop: 8 },
+    cellFn: ({ status, image }) => {
+      if (image.is_error) {
+        return "error";
+      }
+      return status;
+    },
   },
   {
     title: "Selected Option",
     accessor: "selected_option",
     style: { marginTop: 8 },
     flex: 25,
-    cellFn: ({ selected_option }) =>
-      !!selected_option ? (
-        selected_option
-      ) : (
-        <b style={{ color: "#fdad0d", fontStyle: "italic" }}>
-          pending task completion
-        </b>
-      ),
+    cellFn: ({ selected_option, image }) =>
+      (() => {
+        switch (true) {
+          case image.is_error:
+            return <b>Unable to resolve image</b>;
+          case !!selected_option:
+            return selected_option;
+          default:
+            return (
+              <b style={{ color: "#fdad0d", fontStyle: "italic" }}>
+                pending task completion
+              </b>
+            );
+        }
+      })(),
   },
   {
     title: "Created",
@@ -156,6 +173,7 @@ const BatchViewer = ({}) => {
               overflow: "overlay",
             },
           }}
+          rowDecorator={rowDecorator}
         />
         {/* TODO: pagination */}
         {/* {(pagination.more || pagination.page > 1) && (
@@ -192,10 +210,15 @@ const BatchViewer = ({}) => {
   );
 };
 
-export default withPageWrapper(BatchViewer, {
-  Icon: RiCheckboxMultipleBlankLine,
-  title: (() => "Batch " + parsePath(APP_BATCH_PATH).id)(),
-  styles: {
-    componentContainer: styles.pageContainer,
-  },
-});
+const WrappedBatchViewer = (props) => (
+  <PageWrapper
+    Component={() => <BatchViewer {...props} />}
+    Icon={RiCheckboxMultipleBlankLine}
+    title={"Batch " + parsePath(APP_BATCH_PATH).id}
+    styles={{
+      componentContainer: styles.pageContainer,
+    }}
+  />
+);
+
+export default WrappedBatchViewer;

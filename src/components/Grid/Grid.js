@@ -3,7 +3,17 @@ import React from "react";
 import Column from "../Layout/Column";
 import Row from "../Layout/Row";
 
-const Grid = ({ gridProps, resultProps, data, config, emptyState }) => {
+// Config
+// -
+
+const Grid = ({
+  gridProps,
+  resultProps,
+  data,
+  config,
+  emptyState,
+  rowDecorator,
+}) => {
   return (
     <Column {...gridProps}>
       <Row>
@@ -17,7 +27,7 @@ const Grid = ({ gridProps, resultProps, data, config, emptyState }) => {
         {isEmpty(data) && emptyState}
         {!isEmpty(data) &&
           data.map((row, i) => (
-            <Row key={i}>
+            <Row key={i} style={rowDecorator && rowDecorator(row)}>
               {config.map(
                 ({ content, cellFn, accessor, style, flex = 1 }, i) => (
                   <div
