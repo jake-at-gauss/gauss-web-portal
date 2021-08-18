@@ -23,6 +23,10 @@ export const CREATE_RATEABLE_TEMPLATE = {
   ROUTE: "/api/add_template/",
   METHOD: "post",
 };
+export const CREATE_TASK = {
+  ROUTE: "/api/task/classification/",
+  METHOD: "post",
+};
 export const CREATE_TASK_BATCH = {
   ROUTE: "/api/task-batch/classification/",
   METHOD: "post",
@@ -39,7 +43,6 @@ export const CREATE_CHECKOUT_SESSION = {
   ROUTE: "/api/create-checkout-session/",
   METHOD: "post",
 };
-
 
 //Status Codes
 
