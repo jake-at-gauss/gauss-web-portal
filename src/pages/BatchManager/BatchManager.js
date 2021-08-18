@@ -107,41 +107,41 @@ const BatchManager = ({}) => {
   }, [pagination.page]);
 
   return (
-      <Column style={{ padding: 32 }}>
-        <Grid
-          data={batches}
-          config={gridConfig}
-          emptyState={!loading && <EmptyState />}
-        />
-        {(pagination.more || pagination.page > 1) && (
-          <Row>
-            <UnstyledButton
-              onClick={decrementPage}
-              disabled={backDisabled}
-              style={{
-                opacity: backDisabled ? 0.5 : 1,
-                color: regStyles.base,
-                fontWeight: "bold",
-              }}
-            >
-              Back
-            </UnstyledButton>
-            <span style={{ margin: 8, color: regStyles.dark }}>
-              Page {pagination.page}
-            </span>
-            <UnstyledButton
-              onClick={incrementPage}
-              disabled={nextDisabled}
-              style={{
-                opacity: nextDisabled ? 0.5 : 1,
-                color: regStyles.base,
-                fontWeight: "bold",
-              }}
-            >
-              Next
-            </UnstyledButton>
-          </Row>
-        )}
+    <Column style={{ padding: 32 }}>
+      <Grid
+        data={batches}
+        config={gridConfig}
+        emptyState={!loading && <EmptyState />}
+      />
+      {(pagination.more || pagination.page > 1) && (
+        <Row>
+          <UnstyledButton
+            onClick={decrementPage}
+            disabled={backDisabled}
+            style={{
+              opacity: backDisabled ? 0.5 : 1,
+              color: regStyles.base,
+              fontWeight: "bold",
+            }}
+          >
+            Back
+          </UnstyledButton>
+          <span style={{ margin: 8, color: regStyles.dark }}>
+            Page {pagination.page}
+          </span>
+          <UnstyledButton
+            onClick={incrementPage}
+            disabled={nextDisabled}
+            style={{
+              opacity: nextDisabled ? 0.5 : 1,
+              color: regStyles.base,
+              fontWeight: "bold",
+            }}
+          >
+            Next
+          </UnstyledButton>
+        </Row>
+      )}
     </Column>
   );
 };
