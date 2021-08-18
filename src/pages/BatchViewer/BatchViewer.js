@@ -101,25 +101,25 @@ const BatchViewer = ({}) => {
     .join("\n");
 
   // Pagination
-  //   const [pagination, setPagination] = useState({ page: 1, more: false });
-  //   const incrementPage = () =>
-  //     setPagination({ ...pagination, page: pagination.page + 1 });
-  //   const decrementPage = () =>
-  //     setPagination({ ...pagination, page: pagination.page - 1 });
+  const [pagination, setPagination] = useState({ page: 1, more: false });
+  const incrementPage = () =>
+    setPagination({ ...pagination, page: pagination.page + 1 });
+  const decrementPage = () =>
+    setPagination({ ...pagination, page: pagination.page - 1 });
 
-  //   const backDisabled = pagination.page <= 1 || loading;
-  //   const nextDisabled = !pagination.more || loading;
+  const backDisabled = pagination.page <= 1 || loading;
+  const nextDisabled = !pagination.more || loading;
 
   useEffect(() => {
     setLoading(true);
-    fetchBatchTasks(batch_identifier)
+    fetchBatchTasks(batch_identifier, pagination.page)
       .then(({ data }) => {
         setTasks(data.tasks);
         setBatch(data.batch);
-        // setPagination({ ...pagination, more: data.more });
+        setPagination({ ...pagination, more: data.more });
       })
       .finally(() => setLoading(false));
-  }, []);
+  }, [pagination.page]);
 
   return (
     <Column>
@@ -176,35 +176,35 @@ const BatchViewer = ({}) => {
           rowDecorator={rowDecorator}
         />
         {/* TODO: pagination */}
-        {/* {(pagination.more || pagination.page > 1) && (
-        <Row>
-          <UnstyledButton
-            onClick={decrementPage}
-            disabled={backDisabled}
-            style={{
-              opacity: backDisabled ? 0.5 : 1,
-              color: regStyles.base,
-              fontWeight: "bold",
-            }}
-          >
-            Back
-          </UnstyledButton>
-          <span style={{ margin: 8, color: regStyles.dark }}>
-            Page {pagination.page}
-          </span>
-          <UnstyledButton
-            onClick={incrementPage}
-            disabled={nextDisabled}
-            style={{
-              opacity: nextDisabled ? 0.5 : 1,
-              color: regStyles.base,
-              fontWeight: "bold",
-            }}
-          >
-            Next
-          </UnstyledButton>
-        </Row>
-      )} */}
+        {(pagination.more || pagination.page > 1) && (
+          <Row>
+            <UnstyledButton
+              onClick={decrementPage}
+              disabled={backDisabled}
+              style={{
+                opacity: backDisabled ? 0.5 : 1,
+                color: regStyles.base,
+                fontWeight: "bold",
+              }}
+            >
+              Back
+            </UnstyledButton>
+            <span style={{ margin: 8, color: regStyles.dark }}>
+              Page {pagination.page}
+            </span>
+            <UnstyledButton
+              onClick={incrementPage}
+              disabled={nextDisabled}
+              style={{
+                opacity: nextDisabled ? 0.5 : 1,
+                color: regStyles.base,
+                fontWeight: "bold",
+              }}
+            >
+              Next
+            </UnstyledButton>
+          </Row>
+        )}
       </Column>
     </Column>
   );

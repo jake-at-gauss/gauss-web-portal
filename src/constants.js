@@ -36,7 +36,7 @@ export const GET_TASK_BATCHES = {
   METHOD: "get",
 };
 export const GET_TASKS_FROM_BATCH = {
-  ROUTE: "/api/task-batch/classification/:task_id/details/",
+  ROUTE: "/api/task-batch/classification/:task_id/details/:page/",
   METHOD: "get",
 };
 export const CREATE_CHECKOUT_SESSION = {

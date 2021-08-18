@@ -130,9 +130,12 @@ export const fetchUser = async (user = 0) => {
   });
 };
 
-export const fetchBatchTasks = async (batch_identifier) => {
+export const fetchBatchTasks = async (batch_identifier, page = 1) => {
   return axios({
     method: GET_TASKS_FROM_BATCH.METHOD,
-    url: composePath(GET_TASKS_FROM_BATCH.ROUTE, { task_id: batch_identifier }),
+    url: composePath(GET_TASKS_FROM_BATCH.ROUTE, {
+      task_id: batch_identifier,
+      page,
+    }),
   });
 };
