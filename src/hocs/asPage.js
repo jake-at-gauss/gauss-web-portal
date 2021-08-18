@@ -12,6 +12,7 @@ import Row from "../components/Layout/Row";
 
 // icons
 import {
+  IoIosMail,
   IoIosSettings,
   IoMdArrowDropdown,
   IoMdNotifications,
@@ -19,7 +20,7 @@ import {
 } from "react-icons/io";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { RiDashboardLine, RiStackLine } from "react-icons/ri";
-import { BiAddToQueue } from "react-icons/bi";
+import { BiAddToQueue, BiInfoCircle } from "react-icons/bi";
 
 // Styles
 import styles from "./sidebarStyles.css";
@@ -42,6 +43,7 @@ import {
   APP_BUILD_PATH,
   APP_CREATE_BATCH_PATH,
   APP_PATH,
+  APP_PRICING_INFO_PATH,
 } from "../constants";
 
 const headerHeight = 60;
@@ -78,6 +80,14 @@ const batchLinks = [
   },
 ];
 
+const infoLinks = [
+  {
+    to: APP_PRICING_INFO_PATH,
+    Icon: BiInfoCircle,
+    title: "Pricing",
+  },
+];
+
 const topSection = {
   links: [
     {
@@ -102,10 +112,17 @@ const batchSection = {
   links: batchLinks,
 };
 
+const infoSection = {
+  title: {
+    text: "INFO",
+  },
+  links: infoLinks,
+};
+
 const HeaderSearch = ({}) => (
   <Row justify align style={{ marginLeft: "auto", marginRight: 16 }}>
-    <IoMdSearch size={20} />
-    <span style={{ marginLeft: 8 }}>Search</span>
+    {/* <IoMdSearch size={20} />
+    <span style={{ marginLeft: 8 }}>Search</span> */}
   </Row>
 );
 
@@ -116,7 +133,7 @@ const Notifications = ({}) => (
 );
 
 // TODO: don't hardcode this ??
-const UserDropdown = ({ user, logout }) =>
+const UserDropdown = ({ user = {}, logout }) =>
   user.loading ? null : (
     <DropdownMenu
       dropdownOptionsClassName={styles.dropdownOptions}
@@ -208,23 +225,14 @@ const Section = ({ section: { title, links } }) => {
         return (
           <Link
             key={to}
-            className={classNames(styles.sidebarLinkWrapper)}
+            className={classNames(
+              styles.sidebarLinkWrapper,
+              selected && styles.selected
+            )}
             to={to}
           >
-            <Icon
-              className={styles.sidebarIcon}
-              style={{
-                color: selected ? regStyles.base : regStyles.gray95,
-              }}
-            />
-            <span
-              className={styles.navText}
-              style={{
-                color: selected ? regStyles.base : regStyles.gray95,
-              }}
-            >
-              {title.toUpperCase()}
-            </span>
+            <Icon className={styles.sidebarIcon} />
+            <span className={styles.navText}>{title.toUpperCase()}</span>
           </Link>
         );
       })}
@@ -233,13 +241,24 @@ const Section = ({ section: { title, links } }) => {
 };
 
 const FinalSection = ({}) => {
-  const to = APP_PATH;
-  const title = "Settings";
+  // const to = APP_PATH;
+  // const title = "Settings";
+
+  const to = "#";
+  const title = "Contact Us";
+
+  // delete when swapping to settings
+  const mailTo = "mailto:support@trygauss.com";
 
   return (
     <Column className={styles.finalSection}>
-      <Link className={classNames(styles.sidebarLinkWrapper)} to={to}>
-        <IoIosSettings
+      <Link
+        className={classNames(styles.sidebarLinkWrapper)}
+        to={to}
+        onClick={() => (window.location = mailTo)}
+      >
+        {/* <IoIosSettings */}
+        <IoIosMail
           className={styles.sidebarIcon}
           style={{
             color: regStyles.gray95,
@@ -279,6 +298,7 @@ const Page = ({ content, logout }) => {
                 <Section section={topSection} />
                 {/* <Section section={mainSection} /> */}
                 <Section section={batchSection} />
+                <Section section={infoSection} />
                 <FinalSection />
               </Column>
             </Row>

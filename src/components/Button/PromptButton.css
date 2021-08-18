@@ -4,13 +4,13 @@
   position: relative;
   background-color: transparent;
   outline: none;
-  font-family: Lato;
   height: inherit;
   width: fit-content;
   line-height: inherit;
-  border-radius: 4;
+  border-radius: 4px;
   padding: 0px;
   margin: 0px;
+  cursor: pointer;
 }
 
 .defaultStyles > .pseudo-loader {

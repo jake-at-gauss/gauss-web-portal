@@ -24,8 +24,8 @@
 .signupContainer {
   height: 65%;
   width: 28%;
-  min-width: 500px;
-  min-height: 550px;
+  min-width: 450px;
+  min-height: 500px;
   border: 2px solid #092310;
   border-radius: 10px;
   display: flex;

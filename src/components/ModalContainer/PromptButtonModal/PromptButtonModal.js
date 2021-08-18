@@ -168,6 +168,7 @@ export default class PromptButtonModal extends Component {
                 ...approveButton.style,
               }}
               backgroundColor={regStyles.base}
+              borderColor={regStyles.base}
               textColor={regStyles.white}
               text={approveButton.text}
               onClick={this.handleConfirm}

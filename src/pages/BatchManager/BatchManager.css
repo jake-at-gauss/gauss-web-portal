@@ -1,0 +1,16 @@
+.container {
+  padding: 16px 32px;
+  height: 100%;
+  background: #09231020;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.managementContainer {
+  background: white;
+  border-radius: 4px;
+  box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.4);
+  padding: 32px 64px;
+  flex-wrap: wrap;
+  min-width: 500px;
+}

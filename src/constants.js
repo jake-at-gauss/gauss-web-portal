@@ -23,12 +23,20 @@ export const CREATE_RATEABLE_TEMPLATE = {
   ROUTE: "/api/add_template/",
   METHOD: "post",
 };
+export const CREATE_TASK = {
+  ROUTE: "/api/task/classification/",
+  METHOD: "post",
+};
 export const CREATE_TASK_BATCH = {
   ROUTE: "/api/task-batch/classification/",
   METHOD: "post",
 };
 export const GET_TASK_BATCHES = {
   ROUTE: "/api/task-batch/all/",
+  METHOD: "get",
+};
+export const GET_TASKS_FROM_BATCH = {
+  ROUTE: "/api/task-batch/classification/:task_id/details/:page/",
   METHOD: "get",
 };
 export const CREATE_CHECKOUT_SESSION = {
@@ -54,3 +62,5 @@ export const APP_ACCOUNT_PATH = "/app/account";
 export const APP_CREATE_BATCH_PATH = "/app/create_batch";
 export const APP_BATCHES_PATH = "/app/batch_management";
 export const APP_BATCH_PATH = "/app/batch/:id";
+
+export const APP_PRICING_INFO_PATH = "/app/pricing";

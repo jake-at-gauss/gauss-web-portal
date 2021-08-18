@@ -19,13 +19,24 @@ import {
 } from "../../constants";
 import { createUser } from "../../utils/queries";
 import { UnstyledButton } from "../../components/Button/UnstyledButton";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import Row from "../../components/Layout/Row";
+
+import { ReactComponent as Logo } from "../../assets/logo_no_shadow.svg";
+import regStyles from "../../styles/constants";
 
 const Signup = ({ login }) => {
+  const location = useLocation();
+  let params = new URLSearchParams(location.search);
+
+  const name = (params.get("name") || "").split(" ");
+  const first_name = name[0] || "";
+  const last_name = name.slice(1).join(" ") || "";
+
   const [formFields, setFormFields] = useState({
-    [FIRST_NAME]: { value: "", error: "" },
-    [LAST_NAME]: { value: "", error: "" },
-    [EMAIL]: { value: "", error: "" },
+    [FIRST_NAME]: { value: first_name, error: "" },
+    [LAST_NAME]: { value: last_name, error: "" },
+    [EMAIL]: { value: params.get("email"), error: "" },
     [PASSWORD]: { value: "", error: "" },
   });
 
@@ -61,12 +72,13 @@ const Signup = ({ login }) => {
         {}
       );
 
-      const status = await createUser(formValues);
+      const { status } = await createUser(formValues);
 
       if (status === STATUS_SUCCESS) {
         login();
       }
 
+      // TODO: handle failed request
       return;
     }
   };
@@ -75,7 +87,10 @@ const Signup = ({ login }) => {
     <div className={styles.signupPage}>
       <p style={{ flex: 1 }}>&nbsp;</p>
       <div className={styles.signupContainer}>
-        {/* <img className={styles.signupLogo} src="/images/logos/gauss_logo.svg" /> */}
+        <Row align style={{ width: "70%" }}>
+          <Logo style={{ marginRight: 8 }} width="3em" />
+          <h1 style={{ color: regStyles.base }}>Gauss</h1>
+        </Row>
         <div className={styles.signupElements}>
           <Input
             info={"Enter your first name"}
@@ -111,9 +126,7 @@ const Signup = ({ login }) => {
             <p>
               Already have an account?{" "}
               <Link to={LOGIN_PATH}>
-              <span className={styles.cursorText}>
-                Log in here!
-              </span>
+                <span className={styles.cursorText}>Log in here!</span>
               </Link>
             </p>
           </div>
